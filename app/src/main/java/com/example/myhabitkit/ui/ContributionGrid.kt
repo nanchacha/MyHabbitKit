@@ -24,7 +24,6 @@ fun ContributionGrid(
     habitColor: Color = MaterialTheme.colorScheme.primary,
     columns: Int = 12,
     rows: Int = 7,
-    cellSize: Dp = 12.dp,
     cellSpacing: Dp = 4.dp
 ) {
     // Generate dates for the grid ending at today
@@ -33,24 +32,23 @@ fun ContributionGrid(
     val startDate = today.minusDays((totalCells - 1).toLong())
     val formatter = DateTimeFormatter.ISO_LOCAL_DATE
 
-    Column(modifier = modifier) {
+    Column(modifier = modifier.fillMaxWidth()) {
         // Month labels
-        Row(horizontalArrangement = Arrangement.spacedBy(cellSpacing)) {
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(cellSpacing)) {
             var lastMonth = -1
             for (col in 0 until columns) {
                 val daysOffset = (col * rows)
                 val firstCellDate = startDate.plusDays(daysOffset.toLong())
                 val currentMonth = firstCellDate.monthValue
                 
-                Box(modifier = Modifier.width(cellSize)) {
+                Box(modifier = Modifier.weight(1f)) {
                     if (col == 0 || currentMonth != lastMonth) {
                         Text(
                             text = firstCellDate.month.name.take(3), // "JAN", "FEB", etc.
                             style = MaterialTheme.typography.labelSmall.copy(fontSize = 9.sp),
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                             maxLines = 1,
-                            overflow = TextOverflow.Visible,
-                            modifier = Modifier.requiredWidth(40.dp)
+                            overflow = TextOverflow.Visible
                         )
                         lastMonth = currentMonth
                     }
@@ -61,9 +59,9 @@ fun ContributionGrid(
         Spacer(modifier = Modifier.height(4.dp))
         
         // Main Grid
-        Row(horizontalArrangement = Arrangement.spacedBy(cellSpacing)) {
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(cellSpacing)) {
             for (col in 0 until columns) {
-                Column(verticalArrangement = Arrangement.spacedBy(cellSpacing)) {
+                Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(cellSpacing)) {
                     for (row in 0 until rows) {
                         val daysOffset = (col * rows) + row
                         val cellDate = startDate.plusDays(daysOffset.toLong())
@@ -71,7 +69,7 @@ fun ContributionGrid(
                         
                         // Don't show future dates
                         if (cellDate.isAfter(today)) {
-                            Box(modifier = Modifier.size(cellSize))
+                            Box(modifier = Modifier.fillMaxWidth().aspectRatio(1f))
                             continue
                         }
 
@@ -79,7 +77,8 @@ fun ContributionGrid(
 
                         Box(
                             modifier = Modifier
-                                .size(cellSize)
+                                .fillMaxWidth()
+                                .aspectRatio(1f)
                                 .clip(RoundedCornerShape(3.dp))
                                 .border(
                                     width = 1.dp,

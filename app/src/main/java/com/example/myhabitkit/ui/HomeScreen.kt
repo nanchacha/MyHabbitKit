@@ -113,7 +113,6 @@ fun HabitCard(
                 habitColor = habitColor,
                 columns = 16,
                 rows = 5,
-                cellSize = 14.dp,
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             )
         }

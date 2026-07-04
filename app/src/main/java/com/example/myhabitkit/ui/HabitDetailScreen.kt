@@ -77,8 +77,7 @@ fun HabitDetailScreen(
                         entries = entries,
                         habitColor = habitColor,
                         columns = 20, // Wider grid for detail screen
-                        rows = 7,
-                        cellSize = 14.dp
+                        rows = 7
                     )
                 }
             }
