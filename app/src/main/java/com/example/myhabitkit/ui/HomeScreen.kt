@@ -112,7 +112,7 @@ fun HabitCard(
                 entries = entries,
                 habitColor = habitColor,
                 columns = 16,
-                rows = 5,
+                rows = 7,
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             )
         }
