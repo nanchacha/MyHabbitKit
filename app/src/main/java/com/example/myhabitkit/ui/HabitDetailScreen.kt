@@ -76,7 +76,7 @@ fun HabitDetailScreen(
                     ContributionGrid(
                         entries = entries,
                         habitColor = habitColor,
-                        columns = 20, // Wider grid for detail screen
+                        columns = 40, // Wider grid for detail screen
                         rows = 7
                     )
                 }

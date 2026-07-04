@@ -111,7 +111,7 @@ fun HabitCard(
             ContributionGrid(
                 entries = entries,
                 habitColor = habitColor,
-                columns = 16,
+                columns = 32,
                 rows = 7,
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             )
