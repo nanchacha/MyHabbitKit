@@ -1,6 +1,8 @@
 package com.example.myhabitkit.ui
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.background
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -92,7 +94,10 @@ fun HabitCard(
 
     Card(
         modifier = Modifier.fillMaxWidth().clickable { onClick() },
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+        colors = CardDefaults.cardColors(
+            containerColor = Color(0xFF161616),
+            contentColor = Color.White
+        )
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Row(
@@ -111,9 +116,13 @@ fun HabitCard(
             ContributionGrid(
                 entries = entries,
                 habitColor = habitColor,
-                columns = 32,
+                emptyColor = habitColor.copy(alpha = 0.2f),
+                columns = 26,
                 rows = 7,
-                modifier = Modifier.align(Alignment.CenterHorizontally)
+                modifier = Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .background(Color(0xFF161616), shape = RoundedCornerShape(8.dp))
+                    .padding(8.dp)
             )
         }
     }

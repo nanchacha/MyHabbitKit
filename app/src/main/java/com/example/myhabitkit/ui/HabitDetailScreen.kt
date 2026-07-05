@@ -1,6 +1,8 @@
 package com.example.myhabitkit.ui
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.background
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Delete
@@ -76,8 +78,12 @@ fun HabitDetailScreen(
                     ContributionGrid(
                         entries = entries,
                         habitColor = habitColor,
-                        columns = 40, // Wider grid for detail screen
-                        rows = 7
+                        emptyColor = habitColor.copy(alpha = 0.2f),
+                        columns = 26, // 6 months
+                        rows = 7,
+                        modifier = Modifier
+                            .background(Color(0xFF161616), shape = RoundedCornerShape(8.dp))
+                            .padding(8.dp)
                     )
                 }
             }
