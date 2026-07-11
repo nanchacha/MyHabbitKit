@@ -23,6 +23,12 @@ class HabitViewModel(private val habitDao: HabitDao) : ViewModel() {
         }
     }
 
+    fun updateHabit(habit: Habit) {
+        viewModelScope.launch {
+            habitDao.updateHabit(habit)
+        }
+    }
+
     fun deleteHabit(habit: Habit) {
         viewModelScope.launch {
             habitDao.deleteHabit(habit)

@@ -2,6 +2,11 @@ package com.example.myhabitkit.ui
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -12,6 +17,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -88,6 +94,46 @@ fun HabitDetailScreen(
                 }
             }
             
+            // Color Selection Card
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+            ) {
+                Column(modifier = Modifier.padding(16.dp)) {
+                    Text("Theme Color", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+                    Spacer(modifier = Modifier.height(16.dp))
+                    
+                    val colors = listOf(
+                        Color(0xFFBD93F9), // Purple
+                        Color(0xFFFF79C6), // Pink
+                        Color(0xFF8BE9FD), // Cyan
+                        Color(0xFF50FA7B), // Green
+                        Color(0xFFFFB86C), // Orange
+                        Color(0xFFFF5555), // Red
+                        Color(0xFFF1FA8C)  // Yellow
+                    )
+                    
+                    LazyRow(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                        items(colors) { color ->
+                            Box(
+                                modifier = Modifier
+                                    .size(48.dp)
+                                    .clip(CircleShape)
+                                    .background(color)
+                                    .border(
+                                        width = if (habitColor == color) 3.dp else 0.dp,
+                                        color = if (habitColor == color) MaterialTheme.colorScheme.onBackground else Color.Transparent,
+                                        shape = CircleShape
+                                    )
+                                    .clickable { 
+                                        viewModel.updateHabit(habit.copy(color = color.value.toLong())) 
+                                    }
+                            )
+                        }
+                    }
+                }
+            }
+
             // Advanced Statistics Placeholder (To be implemented)
             Card(
                 modifier = Modifier.fillMaxWidth(),

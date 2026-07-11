@@ -112,7 +112,7 @@ fun HabitCard(
                     colors = CheckboxDefaults.colors(checkedColor = habitColor)
                 )
             }
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(8.dp))
             ContributionGrid(
                 entries = entries,
                 habitColor = habitColor,

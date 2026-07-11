@@ -27,8 +27,8 @@ fun ContributionGrid(
     emptyColor: Color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.3f),
     columns: Int = 12,
     rows: Int = 7,
-    cellSpacing: Dp = 4.dp,
-    cellSize: Dp = 14.dp
+    cellSpacing: Dp = 2.dp,
+    cellSize: Dp = 9.dp
 ) {
     // Generate dates for the grid ending at today
     val today = LocalDate.now()
